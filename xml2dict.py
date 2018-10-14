@@ -1,10 +1,6 @@
 """
 Thunder Chen<nkchenz@gmail.com> 2007.9.1
 """
-try:
-    import xml.etree.ElementTree as ET
-except:
-    import cElementTree as ET # for 2.4
 
 from object_dict import object_dict 
 import re
@@ -57,8 +53,6 @@ class XML2Dict(object):
 
     def fromstring(self, s):
         """parse a string"""
-        # parser = ET.XMLParser(encoding='gbk')
-        # t = ET.fromstring(s, parser=parser)
         parser = etree.XMLParser(recover=True, encoding='gbk')
         t = etree.fromstring(s, parser=parser)
         root_tag, root_tree = self._namespace_split(t.tag, self._parse_node(t))
